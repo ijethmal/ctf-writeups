@@ -1,4 +1,6 @@
 Problem:
+Let's start simple in this game. We have collected a piece of javascript. There is a validate function but we don't know the password... can you hack it? 
+https://github.com/SecurityValley/PublicCTFChallenges/blob/master/coding/easy_authentication/easy_authentication.js
 
 Solution:
 The javascript code provided in easy_authentication.js uses the following function to validate a 'password'.
