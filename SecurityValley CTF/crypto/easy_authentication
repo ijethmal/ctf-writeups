@@ -1,0 +1,39 @@
+Problem:
+
+Solution:
+The javascript code provided in easy_authentication.js uses the following function to validate a 'password'.
+function validate(password) {
+***
+    const pass = [106,117,115,116,95,119,97,114,109,105,110,103,95,117,112];
+    const pa = Array.from(password);
+
+    for(let i = 0; i < pa.length; i++) {
+        if(pa[i].charCodeAt(0) !== pass[i]) {
+            throw new Error("pass violation. wrong credentials");
+        }
+    }
+
+    banner(password);
+}
+***
+This means that whatever password is input is made into an array, e.g. 'test' becomes ['t', 'e', 's', 't']. Then, each character is encoded using charCodeAt() function and the final array is checked against 'pass' array provided. 
+
+To reverse-engineer, take 'pass' and decode each character using fromCharCode() function. Use the code as shown below.
+***
+let answer = ""
+const pass = [106,117,115,116,95,119,97,114,109,105,110,103,95,117,112];
+for(let i = 0; i < pass.length; i++) {
+    answer += String.fromCharCode(pass[i]); }
+console.log("Password is", answer)
+***
+Output:
+Password is just_warming_up
+
+Enter the password, and the following payload will be shown:
+***
+Gonna check if just_warming_up is correct
+that was great !!!
+run the following command to get the flag.
+curl -X POST http://ctf.securityvalley.org:7777/api/v1/validate -H 'Content-Type: application/json' -d '{"pass": "just_warming_up"}'
+***
+Running the curl command in terminal as provided gives the flag.
