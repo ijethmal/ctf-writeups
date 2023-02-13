@@ -1,0 +1,28 @@
+Problem:
+We have again capture a bunch of numbers in a list. That makes no sense at all. But a whisteblower has leak that it can be a RSA encrypted block and has published a piece of code. 
+[5129, 10327, 42284, 57695, 5730, 64016, 31008, 40005, 63768, 46371, 7692, 48194, 9075, 32422, 35191, 63230]
+
+Solution:
+The Python code provided with the ciphertext (peace_of_code.py) uses the get_keys() function to generate values e, n and phi to encode the flag. Using the following code to print the keys, 
+***
+def get_keys():
+    p, q = prime(50), prime(60)
+    n = p *q 
+    phi = (p-1)*(q-1)
+    e = 47
+
+    
+    print("e is", e)
+    print("n is", n)
+    print("phi is", phi)
+
+    return e, n, phi
+
+get_keys()
+***
+The output:
+e is 47
+n is 64349
+phi is 63840
+
+Inputting these values with the ciphertext into a RSA decoder gives the flag.
